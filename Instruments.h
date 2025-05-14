@@ -47,6 +47,7 @@ class KeyInstrument: public Instrument {
     void AssignKeys(short int white, short int black);
     void AssignOctaves(short int octaves);
     void showPlayableNotes() const override;
+    void showParams() override;
 };
 
 class GrandPiano: public KeyInstrument {

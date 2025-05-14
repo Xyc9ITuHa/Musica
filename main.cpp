@@ -9,6 +9,10 @@ void displayInstrumentInfo(const std::string& title, Instrument* instrument) {
     std::cout << "Name: " << instrument->name << std::endl;
     
     // Show playable notes
+    std::cout << "Paramaters:" << std::endl;
+    instrument->showParams();
+
+    // Show playable notes
     std::cout << "Playable notes:" << std::endl;
     instrument->showPlayableNotes();
 }

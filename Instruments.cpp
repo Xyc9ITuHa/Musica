@@ -7,12 +7,12 @@
 #include <utility>
 void Instrument::SetName(std::string name) { this->name = std::move(name); }
 void Instrument::showParams() {
-    std::cout << "that's just a " << std::endl;
+    std::cout << "that's just a laceholder for now cause you wanna override that" << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &os, const std::vector<std::string> &vec) {
     for (const auto &str: vec) {
-        os << str << '\n';
+        os << str << ' ';
     }
     return os;
 }
@@ -63,15 +63,21 @@ void KeyInstrument::AssignOctaves(short int octaves) {
     this->blackKeys = this->Keys - this->whiteKeys;
 }
 
+
 void KeyInstrument::showPlayableNotes() const {
-    std::cout << "Playable notes for " << this->name << " (" << this->Keys << " keys: "
-              << this->whiteKeys << " white, " << this->blackKeys << " black)" << std::endl;
-
-    std::cout << "Octave range: " << this->Octaves << " octaves" << std::endl;
-
+    std::cout << "Playable notes for " << this->name << " (" << this->Keys << " keys: " << this->whiteKeys << " white, "
+              << this->blackKeys << " black)" << std::endl;
+    
     // Display notes organized by octave with white and black keys separated
     Instrument::showPlayableNotes();
 }
+void KeyInstrument::showParams() {
+    std::cout << "Keys: " << this->Keys << std::endl;
+    std::cout << "\tWhite: " << this->whiteKeys << std::endl;
+    std::cout << "\tBlack: " << this->blackKeys << std::endl;
+    std::cout << "Octaves: " << this->Octaves << std::endl;
+}
+
 Ukulele::Ukulele(){
     SetName("Ukulele");
     AssignFrets(15);
