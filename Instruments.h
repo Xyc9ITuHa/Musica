@@ -6,6 +6,8 @@
 #define INSTRUMENTS_H
 #include <vector>
 #include <iostream>
+#include <sstream>
+#include <fstream>
 
 class Instrument {
     std::vector<std::string> notation;
@@ -16,32 +18,35 @@ public:
     virtual ~Instrument();
     void playNote();
     void sayNotation();
-    void showPlayableNotes() const;
+    virtual void showPlayableNotes() const;
     void playChord();
     void SetName(std::string name);
+    virtual void showParams();
 };
 
 class StringInstrument: public Instrument {
-    short int Strings = 6; // 6 by default
+    unsigned short int Strings = 6; // 6 by default
     std::vector<std::string> tuning = { "E2", "A2", "D3", "G3", "B3", "E4" }; // from the lowest string to highest
-    int frets = 12; // typical fret count
+    unsigned short int frets = 12; // typical fret count
     public:
     void ComputeNotes();
     void AssignStrings(short int Strings);
     void AssignFrets(short int frets);
-
+    void showPlayableNotes() const override;
+    void showParams() override;
 };
 
 class KeyInstrument: public Instrument {
-    short int blackKeys = 36;
-    short int whiteKeys = 52;
-    short int Keys = 88;
-    short int Octaves = 7;
+    unsigned int blackKeys = 36;
+    unsigned short int whiteKeys = 52;
+    unsigned short int Keys = 88;
+    unsigned short int Octaves = 7;
     bool firstPedal = false;
     bool secondPedal = false;
     public:
     void AssignKeys(short int white, short int black);
     void AssignOctaves(short int octaves);
+    void showPlayableNotes() const override;
 };
 
 class GrandPiano: public KeyInstrument {
